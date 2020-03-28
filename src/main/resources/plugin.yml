@@ -1,0 +1,5 @@
+name: MappedMessage
+version: 1.0
+description: Custom message mapper
+author: AvroVulcan
+main: com.github.avroovulcan.messagemapper.MessageMapper
