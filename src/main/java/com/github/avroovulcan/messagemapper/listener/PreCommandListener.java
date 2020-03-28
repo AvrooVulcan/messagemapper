@@ -21,14 +21,14 @@ public class PreCommandListener implements Listener {
 
     @EventHandler(ignoreCancelled = true)
     public void onCommand(PlayerCommandPreprocessEvent event) {
-        if (!event.getPlayer().hasPermission("messagemapper.use")) return;
         if (!event.getMessage().startsWith("/")) return;
         String label = event.getMessage().toLowerCase().split(" ")[0].substring(1);
-        String message = mappedMessages.get(label);
-
-        if (message != null) {
-            event.setCancelled(true);
-            event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&',message));
+        if (event.getPlayer().hasPermission("messagemapper.useall") || event.getPlayer().hasPermission("messagemapper." + label)) {
+            String message = mappedMessages.get(label);
+            if (message != null) {
+                event.setCancelled(true);
+                event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&',message));
+            }
         }
     }
 
